@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.form-box {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 40px 30px;
+  width: 300px;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+.form-box h1 {
+  font-family: 'Grand Hotel', cursive;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0095f6;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007bd3;
+}
+
+.facebook-btn {
+  background: #385185;
+  margin-top: 10px;
+}
+
+.or {
+  margin: 15px 0;
+  color: #8e8e8e;
+}
+
+.terms {
+  font-size: 12px;
+  color: #8e8e8e;
+  margin-top: 15px;
+}
+
+.terms a {
+  color: #00376b;
+  text-decoration: none;
+}
+
+.login-box {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 20px;
+  width: 300px;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+.login-box a {
+  color: #0095f6;
+  text-decoration: none;
+  font-weight: bold;
+}

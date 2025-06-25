@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>V Social Media</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: #f2f2f2;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin: 15px 0;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .main {
+      margin-left: 220px;
+      flex: 1;
+      padding: 20px;
+    }
+
+    .story-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .story {
+      text-align: center;
+    }
+
+    .post {
+      margin-bottom: 30px;
+      display: none; /* hide initially */
+    }
+
+    .post-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .post img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .right-panel {
+      width: 250px;
+      padding: 20px;
+      background: #f9f9f9;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+    }
+
+    .suggestions button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2><img src="Images/Image1.jpg" alt="Logo" style="width: 40px; height: 40px;"></h2>
+    <ul>
+      <li><a href="explorefinal.html">Explore</a></li>
+      <li><a href="reels.html">Reels</a></li>
+      <li><a href="messaging.html">Messages</a></li>
+      <li><a href="notification.html">Notifications</a></li>
+      <li><a href="create.html">Create</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="story-bar">
+      <div class="story">
+        <img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="Story" style="width: 50px; height: 50px; border-radius: 50%;">
+        <div>YouTubeCreator</div>
+      </div>
+      <div class="story">
+        <img src="https://www.exhibit.tech/wp-content/uploads/2023/03/Untitled-design-5.png" alt="Story" style="width: 50px; height: 50px; border-radius: 50%;">
+        <div>Rohit zinjurke</div>
+      </div>
+      <div class="story">
+        <img src="https://img.etimg.com/thumb/width-1200,height-1200,imgsize-59468,resizemode-75,msid-116617146/magazines/panache/this-pushpa-2-scene-has-now-landed-allu-arjun-in-legal-trouble-once-again.jpg" alt="Story" style="width: 50px; height: 50px; border-radius: 50%;">
+        <div>Allu Arjun</div>
+      </div>
+      <div class="story">
+        <img src="https://cdn.bollywoodbubble.com/wp-content/uploads/2019/08/Prabhas-Saaho-.jpg" alt="Story" style="width: 50px; height: 50px; border-radius: 50%;">
+        <div>Prabhas</div>
+      </div>
+    </div>
+
+    <!-- Posts (each will be shown on scroll) -->
+    <div id="postContainer">
+      <div class="post">
+        <div class="post-header"><strong>youtube</strong> <span>1d</span></div>
+        <img src="Images/Image9.jpg" alt="Post Image">
+      </div>
+
+      <div class="post">
+        <div class="post-header"><strong>vishwas</strong> <span>2d</span></div>
+        <img src="Images/Image5.jpg" alt="Post Image">
+      </div>
+
+      <div class="post">
+        <div class="post-header"><strong>rohit</strong> <span>3d</span></div>
+        <img src="Images/Image6.jpg" alt="Post Image">
+      </div>
+
+      <div class="post">
+        <div class="post-header"><strong>mit</strong> <span>4d</span></div>
+        <img src="Images/Image7.jpg" alt="Post Image">
+      </div>
+
+      <div class="post">
+        <div class="post-header"><strong>prabhas</strong> <span>5d</span></div>
+        <img src="Images/Image8.jpg" alt="Post Image">
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="switch-profile">
+      <strong>vishwas_gaming</strong> <button>Switch</button>
+    </div>
+    <h3>Suggested for you</h3>
+    <ul class="suggestions">
+      <li>vishwas_navgire_ <button>Follow</button></li>
+      <li>youtube <button>Follow</button></li>
+      <li>instagram <button>Follow</button></li>
+      <li>google <button>Follow</button></li>
+      <li>apple <button>Follow</button></li>
+    </ul>
+  </div>
+
+  <script>
+    // Infinite scroll logic
+    const posts = document.querySelectorAll('.post');
+    let visibleCount = 0;
+
+    function showNextPost() {
+      if (visibleCount < posts.length) {
+        posts[visibleCount].style.display = 'block';
+        visibleCount++;
+      }
+    }
+
+    // Show first post on load
+    window.addEventListener('load', showNextPost);
+
+    // Show next post when scrolling near bottom
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const documentHeight = document.body.offsetHeight;
+
+      if (scrollPosition >= documentHeight - 200) {
+        showNextPost();
+      }
+    });
+  </script>
+</body>
+</html>

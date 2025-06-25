@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #fafafa;
+    color: #262626;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    padding: 20px;
+    border-right: 1px solid #dbdbdb;
+    height: 100vh;
+    position: fixed;
+    background-color: white;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidebar ul li.active {
+    font-weight: bold;
+}
+
+.badge {
+    background: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+/* Profile main */
+.profile-main {
+    margin-left: 260px;
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-right: 40px;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-username {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-username h2 {
+    font-size: 24px;
+}
+
+.profile-username button {
+    padding: 6px 12px;
+    border: 1px solid #dbdbdb;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.settings-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.profile-stats {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    font-weight: 500;
+}
+
+.profile-bio {
+    margin-top: 10px;
+}
+
+.profile-bio a {
+    color: #00376b;
+    text-decoration: none;
+}
+
+/* Story section */
+.story-section {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+}
+
+.story-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #eee;
+    border-radius: 50%;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    margin-bottom: 5px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 10px;
+    border-top: 1px solid #dbdbdb;
+    padding-top: 10px;
+}
+
+.tab {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.tab.active {
+    border-top: 2px solid black;
+}
+
+/* Posts Grid */
+.posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.posts img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}

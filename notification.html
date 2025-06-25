@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #fff;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .notification-list {
+      padding: 15px;
+    }
+    .notification {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+    }
+    .notification img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .notification .text {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>Notifications</header>
+  <div class="notification-list" id="notificationList"></div>
+
+  <script>
+    const notifications = [
+      { user: "Rohit", action: "liked your photo", avatar: "https://www.exhibit.tech/wp-content/uploads/2023/03/Untitled-design-5.png" },
+      { user: "Prabhas", action: "commented: Nice one!", avatar: "https://cdn.bollywoodbubble.com/wp-content/uploads/2019/08/Prabhas-Saaho-.jpg" },
+      { user: "Allu Arjun", action: "started following you", avatar: "https://img.etimg.com/thumb/width-1200,height-1200,imgsize-59468,resizemode-75,msid-116617146/magazines/panache/this-pushpa-2-scene-has-now-landed-allu-arjun-in-legal-trouble-once-again.jpg" },
+      { user: "Vijay Deverakonda", action: "mentioned you in a comment", avatar: "https://www.bollywoodhelpline.com/upload/artist/Vijay%20Deverakonda_128843.jpg?height=900&width=900&crop=auto&scale=both" }
+    ];
+
+    const list = document.getElementById("notificationList");
+    notifications.forEach(n => {
+      const item = document.createElement("div");
+      item.className = "notification";
+      item.innerHTML = `
+        <img src="${n.avatar}" alt="${n.user}">
+        <div class="text"><strong>${n.user}</strong> ${n.action}</div>
+      `;
+      list.appendChild(item);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram Reels</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .reels-container {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    .reel {
+      position: relative;
+      height: 100vh;
+      scroll-snap-align: start;
+    }
+
+    .reel video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .info {
+      max-width: 70%;
+    }
+
+    .user {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .caption {
+      font-size: 0.9rem;
+    }
+
+    .audio {
+      font-size: 0.75rem;
+      color: #ccc;
+      margin-top: 0.4rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      font-size: 1.4rem;
+    }
+
+    .actions i {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .actions i:active {
+      transform: scale(0.9);
+    }
+
+    .liked {
+      color: #ff3040;
+    }
+
+    .heart-anim {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 5rem;
+      color: #ff3040;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: pop 0.6s ease-out forwards;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+      }
+      60% {
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .reels-container::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="reels-container" id="reels"></div>
+
+  <script>
+    const reelsData = [
+
+      {src: 'videos/videos1.mp4',
+        user: 'naturelover',
+        caption: 'Sunshine through the trees 🌳☀️',
+        audio: 'Forest Ambience'
+      },
+      {
+        src: 'videos/videos2.mp4',
+        user: 'healthylife',
+        caption: 'Fresh smoothie anyone? 🥭🍓',
+        audio: 'Tropical Vibes'
+      },
+      {
+        src: 'videos/videos3.mp4',
+        user: 'dogdays',
+        caption: 'Happy paws on sand 🐶',
+        audio: 'Original Sound'
+      },
+      {
+        src: 'videos/videos4.mp4',
+        user: 'traveler',
+        caption: 'Peace by the riverside 🧘‍♂️',
+        audio: 'Soothing River'
+      },
+      {
+        src: 'https://cdn.coverr.co/videos/coverr-pouring-espresso-3651/1080p.mp4',
+        user: 'caffeine',
+        caption: 'Espresso art ☕️',
+        audio: 'Cafe Jazz'
+      },
+      {
+        src: 'https://cdn.coverr.co/videos/coverr-aerial-view-of-mountain-5864/1080p.mp4',
+        user: 'mountaindreams',
+        caption: 'Touching clouds 🏔️',
+        audio: 'Epic Journey'
+      },
+      {
+        src: 'https://cdn.coverr.co/videos/coverr-working-out-on-rooftop-2941/1080p.mp4',
+        user: 'fitlife',
+        caption: 'Push beyond limits 💪',
+        audio: 'Workout Beats'
+      },
+      {
+        src: 'https://cdn.coverr.co/videos/coverr-ice-cream-treats-1806/1080p.mp4',
+        user: 'sweettooth',
+        caption: 'Sundae fun day 🍨',
+        audio: 'Pop Chill'
+      },
+      {
+        src: 'https://cdn.coverr.co/videos/coverr-night-city-drive-2321/1080p.mp4',
+        user: 'nightowl',
+        caption: 'City lights speed 🏙️🚗',
+        audio: 'Synth Drive'
+      },
+      {
+        src: 'https://cdn.coverr.co/videos/coverr-morning-coffee-2185/1080p.mp4',
+        user: 'morningroutine',
+        caption: 'Start with a sip 🌅',
+        audio: 'Lo-fi Wakeup'
+      },
+    ];
+
+    const reelsContainer = document.getElementById('reels');
+
+    reelsData.forEach((r, i) => {
+      const reel = document.createElement('div');
+      reel.className = 'reel';
+      reel.innerHTML = `
+        <video src="${r.src}" muted playsinline ${i === 0 ? 'autoplay' : ''} loop></video>
+        <div class="overlay">
+          <div class="info">
+            <div class="user">@${r.user}</div>
+            <div class="caption">${r.caption}</div>
+            <div class="audio"><i class="fa-solid fa-music"></i> ${r.audio}</div>
+          </div>
+          <div class="actions">
+            <i class="fa-regular fa-heart like-btn"></i>
+            <i class="fa-regular fa-comment"></i>
+            <i class="fa-regular fa-paper-plane"></i>
+            <i class="fa-solid fa-ellipsis"></i>
+          </div>
+        </div>
+      `;
+      reelsContainer.appendChild(reel);
+    });
+
+    // Play/pause control based on scroll
+    const videos = document.querySelectorAll('video');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.play();
+        } else {
+          entry.target.pause();
+        }
+      });
+    }, { threshold: 0.6 });
+
+    videos.forEach(video => observer.observe(video));
+
+    // Like toggle + heart animation
+    document.querySelectorAll('.reel').forEach(reel => {
+      const likeBtn = reel.querySelector('.like-btn');
+      let lastTap = 0;
+
+      reel.addEventListener('click', e => {
+        const now = Date.now();
+        if (now - lastTap < 300) {
+          toggleLike();
+          animateHeart(e.clientX, e.clientY, reel);
+        }
+        lastTap = now;
+      });
+
+      likeBtn.addEventListener('click', toggleLike);
+
+      function toggleLike() {
+        likeBtn.classList.toggle('fa-solid');
+        likeBtn.classList.toggle('liked');
+        likeBtn.classList.toggle('fa-regular');
+      }
+    });
+
+    function animateHeart(x, y, container) {
+      const heart = document.createElement('i');
+      heart.className = 'fa-solid fa-heart heart-anim';
+      heart.style.left = `${x - container.getBoundingClientRect().left}px`;
+      heart.style.top = `${y - container.getBoundingClientRect().top}px`;
+      container.appendChild(heart);
+      setTimeout(() => heart.remove(), 600);
+    }
+  </script>
+</body>
+</html>
